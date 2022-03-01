@@ -1,15 +1,38 @@
 /*************Search and API parts********************/
+const error = document.getElementById('error')
+ 
 const searchMobile = () =>{
      document.getElementById('phoneId').innerHTML = '' ;
     const mobile = document.getElementById('input_value')
     const mobileValue = mobile.value;
+   
     mobile.value = '';
-        const url = `https://openapi.programming-hero.com/api/phones?search=${mobileValue}`
-       
-        fetch(url)
-        .then(Response =>Response.json())
-        .then(data => showMobile(data.data))
+  
+   
+//     error handel
+ if(mobileValue == ''){
+    error.innerHTML = "please enter the phone Name !!"
+    document.getElementById('displayphone').style.display = "none"
+ }
 
+else{
+     const url = `https://openapi.programming-hero.com/api/phones?search=${mobileValue}`
+     fetch(url)
+     .then(Response =>Response.json())
+     .then(data => {
+          if(data.data == false){
+               error.innerHTML = "No match found !!"
+                document.getElementById('displayphone').style.display = "none"
+            }
+              
+          else{
+               showMobile(data.data.slice(0,20))
+                error.innerHTML = ''; 
+                main.innerText = '' ;
+               }
+          } )
+          
+}
 }
 
 /*************Search and API parts********************/
@@ -17,16 +40,13 @@ const searchMobile = () =>{
 /***************display show phone *************************/
 const showMobile = (phones) =>{
      const main =document.getElementById('displayphone')
-     main.innerHTML = '' ;
-  
-     const slice = phones.slice(0,20)
 for(const phone of phones){
-     // console.log(phone)
-     
-     const div = document.createElement('div')
+ const div = document.createElement('div')
+  div.classList.add("col-lg-4")
+//  div.className = "mb-3"
 
-div.className = "mb-3"
-div.className = "col-lg-4"
+
+/* **************** phone Dynamic *********** */
  div.innerHTML = `
 <div class="card text-center p-3 mb-3 " style="width: 18rem; background-color: LavenderBlush ;  ">
 <img  src="${phone.image}" class="card-img-top w-50 mx-auto " alt="...">
@@ -45,7 +65,6 @@ main.appendChild(div)
 
 /*****************Add Phone id js********************* */
 const phoneId = (id) =>{
-// console.log(id)
       const url =`https://openapi.programming-hero.com/api/phone/${id}`
      fetch(url)
      .then(Response =>Response.json())
@@ -53,14 +72,12 @@ const phoneId = (id) =>{
 }
 
 const phoneInfo = (info) =>{
-     // console.log(info.mainFeatures.sensors)
 const phoneId = document.getElementById('phoneId')
 const div = document.createElement('div')
 
-
 phoneId.innerHTML = '' ;
-div.innerHTML = `
-                               
+/* **************** id Dynamic *********** */
+div.innerHTML = `                    
 <div class="card mx-auto " style="width: 18rem;background-color: LightPink ;">
 <img src="${info.image}" class=" pt-2 card-img-top w-50 mx-auto" alt="...">
 <div class="card-body">
@@ -75,3 +92,4 @@ div.innerHTML = `
 phoneId.appendChild(div)
 
 }
+/*****************Add Phone id js********************* */
