@@ -1,11 +1,11 @@
 /*************Search and API parts********************/
 const error = document.getElementById('error')
+
  
 const searchMobile = () =>{
      document.getElementById('phoneId').innerHTML = '' ;
     const mobile = document.getElementById('input_value')
     const mobileValue = mobile.value;
-   
     mobile.value = '';
   
    
@@ -27,8 +27,10 @@ else{
               
           else{
                showMobile(data.data.slice(0,20))
-                error.innerHTML = ''; 
-                main.innerText = '' ;
+               document.getElementById('displayphone').style.display = "inline-block"
+                error.innerHTML = '';
+                mainCountainer.innertext = '';
+               
                }
           } )
           
@@ -38,27 +40,29 @@ else{
 /*************Search and API parts********************/
 
 /***************display show phone *************************/
+
 const showMobile = (phones) =>{
-     const main =document.getElementById('displayphone')
+     const mainCountainer =document.getElementById('displayphone')
+     mainCountainer.innerHTML = '' ;
 for(const phone of phones){
  const div = document.createElement('div')
-  div.classList.add("col-lg-4")
-//  div.className = "mb-3"
+  div.className = 'col-lg-3'
+ 
+  
 
-
+/*  */
 /* **************** phone Dynamic *********** */
  div.innerHTML = `
-<div class="card text-center p-3 mb-3 " style="width: 18rem; background-color: LavenderBlush ;  ">
+<div class="card text-center p-3 m-3 "  style="width: 18rem; background-color: LavenderBlush ;">
 <img  src="${phone.image}" class="card-img-top w-50 mx-auto " alt="...">
 <div class="card-body">
   <h2 class="card-title text-danger">${phone.brand}</h2>
   <h4 class="card-title text-success">${phone.phone_name}</h4>
- 
   <button onclick="phoneId('${phone.slug}')"  class="btn btn-primary">Details</button>
 </div>
 </div>
 `
-main.appendChild(div) 
+mainCountainer.appendChild(div) 
 }
 }
 /***************display show phone *************************/
@@ -72,20 +76,25 @@ const phoneId = (id) =>{
 }
 
 const phoneInfo = (info) =>{
+     console.log(info.others)
 const phoneId = document.getElementById('phoneId')
 const div = document.createElement('div')
 
 phoneId.innerHTML = '' ;
 /* **************** id Dynamic *********** */
 div.innerHTML = `                    
-<div class="card mx-auto " style="width: 18rem;background-color: LightPink ;">
+<div class="card mx-auto " style="width: 18rem; background-color ="rgba(255, 192, 203, 0.659)";   >
 <img src="${info.image}" class=" pt-2 card-img-top w-50 mx-auto" alt="...">
 <div class="card-body">
-  <h4 class="card-title text-primary fs-2"> Name:${info.name}</h4>
-  <h5 class="card-title text-success ">${info.mainFeatures.storage}</h5>
-  <h6 class="card-title text-dark">${info.mainFeatures.displaySize}</h6>
-  <p class="card-title text-dark">${info.mainFeatures.memory}</p>
-  <p class="card-title text-warming">${info.mainFeatures.sensors[4]}</p>
+  <h4 class="card-title text-primary fs-2">Name:${info.name}</h4>
+  <p class="card-title text-danger">ReleaseDate${info.releaseDate}</p>
+  <h6 class="card-title text-success">MainFeatures: ${info.mainFeatures.storage}</h6>
+  <h6 class="card-title text-success">MainFeatures: ${info.mainFeatures.displaySize}</h6>
+  <h6 class="card-title text-success">MainFeatures: ${info.mainFeatures.memory}</h6>
+  <h6 class="card-title text-success">MainFeatures: ${info.mainFeatures.sensors[4]}</h6>
+  <p class="card-title text-primary">Others: ${info.others.WLAN}</p>
+  <p class="card-title text-primary">Others: ${info.others.Bluetooth}</p>
+  <p class="card-title text-primary">Others: ${info.others.USB}</p>
 </div>
 </div>
 `

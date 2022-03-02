@@ -10,7 +10,10 @@ font-size: 40px;
 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 font-weight: bolder;
 color: crimson;
+color: rgba(255, 192, 203, 0.659);
 }
+
+
 #error{
     text-align: center;
     color: red;
