@@ -1,14 +1,11 @@
 /*************Search and API parts********************/
 const error = document.getElementById('error')
-
- 
 const searchMobile = () =>{
      document.getElementById('phoneId').innerHTML = '' ;
     const mobile = document.getElementById('input_value')
     const mobileValue = mobile.value;
     mobile.value = '';
-  
-   
+
 //     error handel
  if(mobileValue == ''){
     error.innerHTML = "please enter the phone Name !!"
@@ -30,7 +27,6 @@ else{
                document.getElementById('displayphone').style.display = "inline-block"
                 error.innerHTML = '';
                 mainCountainer.innertext = '';
-               
                }
           } )
           
@@ -47,8 +43,7 @@ const showMobile = (phones) =>{
 for(const phone of phones){
  const div = document.createElement('div')
   div.className = 'col-lg-3'
- 
-  
+
 
 /*  */
 /* **************** phone Dynamic *********** */
@@ -79,7 +74,6 @@ const phoneInfo = (info) =>{
      console.log(info.others)
 const phoneId = document.getElementById('phoneId')
 const div = document.createElement('div')
-
 phoneId.innerHTML = '' ;
 /* **************** id Dynamic *********** */
 div.innerHTML = `                    
