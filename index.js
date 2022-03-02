@@ -26,7 +26,6 @@ else{
                showMobile(data.data.slice(0,20))
                document.getElementById('displayphone').style.display = "inline-block"
                 error.innerHTML = '';
-                mainCountainer.innertext = '';
                }
           } )
           
@@ -35,8 +34,8 @@ else{
 
 /*************Search and API parts********************/
 
-/***************display show phone *************************/
 
+/***************display show phone *************************/
 const showMobile = (phones) =>{
      const mainCountainer =document.getElementById('displayphone')
      mainCountainer.innerHTML = '' ;
@@ -71,7 +70,6 @@ const phoneId = (id) =>{
 }
 
 const phoneInfo = (info) =>{
-     console.log(info.others)
 const phoneId = document.getElementById('phoneId')
 const div = document.createElement('div')
 phoneId.innerHTML = '' ;
